@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { Movie } from '../../types/Movie';
 import { TextField } from '../TextField';
+import { validateUrl } from '../../utils/validation';
 
 const INITIAL_NEW_MOVIE_STATE: Movie = {
   title: '',
@@ -68,6 +69,8 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
         value={newMovie.imgUrl}
         onChange={newValue => handleInputChange(newValue, 'imgUrl')}
         required
+        validate={() => validateUrl(newMovie.imgUrl)}
+        validationErrorMessage="Image URL should be valid URL."
       />
 
       <TextField
@@ -76,6 +79,8 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
         value={newMovie.imdbUrl}
         onChange={newValue => handleInputChange(newValue, 'imdbUrl')}
         required
+        validate={() => validateUrl(newMovie.imdbUrl)}
+        validationErrorMessage="Imdb URL should be valid URL."
       />
 
       <TextField
